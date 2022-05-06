@@ -1,15 +1,16 @@
 {
-    "author": "seraphinush . baldera-mods",
+    "author": "seraphinush / baldera-mods",
     "conflict": ["auto-qol","skip-cutscene"],
     "description": "tera-toolbox module to automatically skip cutscenes",
     "disableAutoUpdate": false,
     "name": "auto-cutscene",
     "options": {
+        "cliName": "Auto Cutscene",
+        "guiName": "Auto Cutscene",
         "reloadable": true,
         "settingsVersion": 1,
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js"
     },
-    "servers": ["https://raw.githubusercontent.com/tera-private-mods/auto-cutscene/master/"],
-    "version": "1.21.00.v105.02"
+    "servers": ["https://raw.githubusercontent.com/tera-private-mods/auto-cutscene/master/"]
 }
