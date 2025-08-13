@@ -3,8 +3,10 @@
 Module to automatically skip cutscenes.
 
 ## Usage
-- `skip`
+
+- `cutscene skip`
+
   - Toggle on/off
 
-- `cutscene <num>`
+- `cutscene play <num>`
   - Play cutscene `<num>`

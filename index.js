@@ -1,48 +1,44 @@
-'use strict';
-
 class auto_cutscene {
-
   constructor(mod) {
-
     this.command = mod.command;
 
     if (mod.majorPatchVersion >= 105)
-      return mod.warn('Deprecated. please refer to the in-game option to toggle cutscene.');
+      return mod.warn("Deprecated. please refer to the in-game option to toggle cutscene.");
 
     // command
-    mod.command.add('skip', {
-      '$default': () => {
+    mod.command.add("skip", {
+      $default: () => {
         mod.settings.enable = !mod.settings.enable;
-        this.send(`${mod.settings.enable ? 'En' : 'Dis'}abled`);
-      }
+        this.send(`${mod.settings.enable ? "En" : "Dis"}abled`);
+      },
     });
 
-    mod.command.add('cutscene', {
-      '$default': (num) => {
+    mod.command.add("cutscene", {
+      $default: (num) => {
         if (num && !isNaN(num)) {
-          mod.send('S_PLAY_MOVIE', 1, { movie: num });
+          mod.send("S_PLAY_MOVIE", 1, { movie: num });
           this.send(`Attempted to play cutscene ${num}`);
         }
-      }
+      },
     });
 
     // code
-    mod.hook('S_PLAY_MOVIE', 1, (e) => {
+    mod.hook("S_PLAY_MOVIE", 1, (e) => {
       if (mod.settings.enable) {
-        mod.send('C_END_MOVIE', 1, Object.assign({ unk: 1 }, e));
+        mod.send("C_END_MOVIE", 1, Object.assign({ unk: 1 }, e));
         return false;
       }
     });
-
   }
 
   destructor() {
-    this.command.remove('skip');
-    this.command.remove('cutscene');
+    this.command.remove("skip");
+    this.command.remove("cutscene");
   }
 
-  send(msg) { this.command.message(': ' + msg); }
-
+  send(msg) {
+    this.command.message(": " + msg);
+  }
 }
 
 module.exports = { NetworkMod: auto_cutscene };
